@@ -26,9 +26,9 @@ class Twig_Extensions_Extension_Intl extends Twig_Extension
     public function getFilters()
     {
         return array(
-            'localizeddate'     => new Twig_Filter_Function('twig_localized_date_filter', array('needs_environment' => true)),
-            'localizednumber'   => new Twig_Filter_Function('twig_localized_number_filter'),
-            'localizedcurrency' => new Twig_Filter_Function('twig_localized_currency_filter'),
+            new Twig_SimpleFilter('localizeddate','twig_localized_date_filter', array('needs_environment' => true)),
+            new Twig_SimpleFilter('localizednumber','twig_localized_number_filter'),
+            new Twig_SimpleFilter('localizedcurrency','twig_localized_currency_filter'),
         );
     }
 

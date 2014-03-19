@@ -23,6 +23,7 @@ class Twig_Extensions_Extension_Text extends Twig_Extension
     {
         return array(
             new Twig_SimpleFilter('truncate', 'twig_truncate_filter', array('needs_environment' => true)),
+            new Twig_Filter_Function('twig_truncate_abbr_filter', array('needs_environment' => true, 'pre_escape' => 'html', 'is_safe' => array('html'))),
             new Twig_SimpleFilter('wordwrap', 'twig_wordwrap_filter', array('needs_environment' => true)),
         );
     }
@@ -98,4 +99,11 @@ if (function_exists('mb_get_info')) {
     {
         return wordwrap($value, $length, $separator, !$preserve);
     }
+}
+
+function twig_truncate_abbr_filter(Twig_Environment $env, $value, $length = 30, $preserve = false, $separator = '...')
+{
+    $separator = sprintf(' <abbr title="%s">%s</abbr>', $value, $separator);
+
+    return twig_truncate_filter($env, $value, $length, $preserve, $separator);
 }

@@ -23,7 +23,7 @@ class Twig_Extensions_Extension_Text extends Twig_Extension
     {
         return array(
             new Twig_SimpleFilter('truncate', 'twig_truncate_filter', array('needs_environment' => true)),
-            new Twig_Filter_Function('twig_truncate_abbr_filter', array('needs_environment' => true, 'pre_escape' => 'html', 'is_safe' => array('html'))),
+            new Twig_SimpleFilter('truncate_abbr', 'twig_truncate_abbr_filter', array('needs_environment' => true, 'pre_escape' => 'html', 'is_safe' => array('html'))),
             new Twig_SimpleFilter('wordwrap', 'twig_wordwrap_filter', array('needs_environment' => true)),
         );
     }
